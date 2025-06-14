@@ -12,18 +12,20 @@ const getDailyGame = async (): Promise<IGameResponse> => {
       `${process.env.NEXT_API_URL}/next-api/?api=game_day`,
       { next: { revalidate: 320 } }
     )
-    return response.json();
+    return response.json()
   }catch(err){
-    throw new Error("Failed to fetch data")
+    console.log(err)
+    throw new Error('Failed to fetch data')
   }
 }
 
 const getGamesData = async (): Promise<IGameResponse[]> => {
   try{
     const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=games`, { next: { revalidate: 320 } })
-    return res.json();
+    return res.json()
   }catch(err){
-    throw new Error("Failed to fetch data")
+    console.log(err)
+    throw new Error('Failed to fetch data')
   }
 }
 
