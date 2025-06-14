@@ -5,7 +5,8 @@ import { IGameResponse } from '@/interfaces'
 
 const getData = async (title: string): Promise<IGameResponse[] | null> => {
   try{
-    const response = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${title}`)
+    const decodeTitle = decodeURI(title)
+    const response = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodeTitle}`)
     return response.json()
   }catch(err){
     console.error(err)
