@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { IGameResponse } from '@/interfaces'
 import { BsArrowRightSquare } from 'react-icons/bs'
 import SearchInput from '@/components/searchInput'
-import GameCard from '@/components/gamedata'
+import GameCard from '@/components/gameCard'
 
 const getDailyGame = async (): Promise<IGameResponse> => {
   try{
