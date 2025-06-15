@@ -2,6 +2,7 @@ import { Container } from '@/components/container'
 import Image from 'next/image'
 import userImg from '../../../public/user.png'
 import { FaShareAlt } from 'react-icons/fa'
+import FavoriteGameCard from '@/components/favoriteGameCard'
 
 export default function Profile() {
   return (
@@ -28,6 +29,20 @@ export default function Profile() {
             <button className="bg-gray-700 px-4 py-3 rounded-lg">
               <FaShareAlt size={24} color="#FFF" />
             </button>
+          </div>
+        </section>
+
+        <section className="flex flex-wrap gap-5 flex-col md:flex-row">
+          <div className="flex-grow flex-wrap">
+            <FavoriteGameCard />
+          </div>
+
+          <div className="flex-grow flex-wrap">
+            <FavoriteGameCard />
+          </div>
+
+          <div className="flex-grow flex-wrap">
+            <FavoriteGameCard />
           </div>
         </section>
       </Container>
