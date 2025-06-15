@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import GameCard from '@/components/gameCard'
 import Label from '@/components/label'
+import { Metadata } from 'next'
+import { metadata } from '@/app/layout'
 
 const getData = async (id: string): Promise<IGameResponse | null> => {
   try {
@@ -28,6 +30,35 @@ const getGameSorted = async (): Promise<IGameResponse> =>{
   }
 }
 
+export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> => {
+  const { id } = await params
+  try {
+    const gameData = await getData(id)
+    if (!gameData) return metadata
+
+    return {
+      title: gameData.title,
+      description: `${gameData.description.slice(0,100)}`,
+      openGraph: {
+        title: gameData.title,
+        images: [gameData.image_url],
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          noimageindex: true,
+        },
+      },
+    }
+  } catch (err) {
+    console.log(err)
+    return metadata
+  }
+}
 
 export default async function Game({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
